@@ -1,0 +1,7 @@
+name: pmutil
+version: 1.0.0
+author: SOFe
+antigen: sofe\pmutil
+api:
+  - 3.0.0-ALPHA10
+description: Useful utilities for PocketMine plugins
