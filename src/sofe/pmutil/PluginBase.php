@@ -45,4 +45,14 @@ class PluginBase extends PmBase{
 		\fclose($fh);
 		return $ret;
 	}
+
+	private static $instance;
+
+	public function onLoad(){
+		self::$instance = $this;
+	}
+
+	public static function getInstance(){
+		return self::$instance;
+	}
 }
