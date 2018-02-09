@@ -31,11 +31,12 @@ class PluginBase extends PmBase{
 			}
 			public function onRun(int $ticks){
 				$delay = $this->generator->send($ticks === \PHP_INT_MAX ? \PHP_INT_MAX : (($ticks - $this->initial) / $this->unit));
+				if(!$this->generator->valid()) return;
 				if(!\is_int($delay)) throw new \TypeError("Generators passed to sleepy() must yield int");
 				$this->owner->getServer()->getScheduler()->scheduleDelayedTask($this, $delay * $this->unit);
 			}
 		};
-		$this->getServer()->getScheduler()->scheduleDelayedTask($task, $generator->current() * $unit);
+		$this->getServer()->getScheduler()->scheduleDelayedTask($task, $generator->current() * $unit); // current() executes the initial code in the generator
 	}
 
 	public function getResourceContents(string $path) : ?string{
